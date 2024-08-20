@@ -29,7 +29,6 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">To Do List app</a>
-
                 <img src="{{ asset('img/Logo_OpenClassrooms.png') }}" alt="OpenClassrooms" />
             </div>
         </div>
@@ -38,7 +37,10 @@
     <!-- Page Content -->
     <div class="container">
         <div class="row">
-            {#  <a href="{{ path('user_create') }}" class="btn btn-primary">Créer un utilisateur</a> #}
+            {% if app.user is not null and app.user.roles[0] != 'ROLE_USER' %}
+                <a href="{{ path('user_create') }}" class="btn btn-primary">Créer un utilisateur</a>
+                <a href="{{ path('user_list') }}" class="btn btn-link">Liste des utilisateurs</a>
+            {% endif %}
 
             {% if app.user %}
                 <a href="{{ path('app_logout') }}" class="pull-right btn btn-danger">Se déconnecter</a>
@@ -79,7 +81,6 @@
     <!-- /.container -->
 
     <div class="container">
-
         <hr>
         <footer>
             <div class="row">
@@ -88,10 +89,9 @@
                 </div>
             </div>
         </footer>
-
     </div>
 
-    <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
 </body>
 </html>
