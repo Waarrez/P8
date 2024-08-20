@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class TaskController extends AbstractController
 {
@@ -29,6 +30,7 @@ class TaskController extends AbstractController
     }
 
     #[Route(path: "/tasks/create", name: "task_create")]
+    #[IsGranted("IS_AUTHENTICATED_FULLY")]
     public function createAction(Request $request): Response
     {
         $task = new Task();
@@ -46,6 +48,7 @@ class TaskController extends AbstractController
     }
 
     #[Route(path: "/task/{id}/edit", name: 'task_edit')]
+    #[IsGranted("IS_AUTHENTICATED_FULLY")]
     public function editAction(Task $task, Request $request): Response
     {
         $form = $this->createForm(TaskType::class, $task);
@@ -68,6 +71,7 @@ class TaskController extends AbstractController
     }
 
     #[Route(path: "/tasks/{id}/toggle", name: 'task_toggle')]
+    #[IsGranted("IS_AUTHENTICATED_FULLY")]
     public function toggleTaskAction(Task $task): Response
     {
         $task->setDone(!$task->isDone());
@@ -79,8 +83,15 @@ class TaskController extends AbstractController
     }
 
     #[Route(path: "/tasks/{id}/delete", name: 'task_delete')]
+    #[IsGranted("IS_AUTHENTICATED_FULLY")]
     public function deleteTaskAction(Task $task): RedirectResponse
     {
+        if($this->getUser()->getId() !== $task->getUser()->getId()) {
+            $this->addFlash('error', "Vous n'êtes pas autorisé à faire cette action");
+
+            return $this->redirectToRoute('task_list');
+        }
+
         $this->em->remove($task);
         $this->em->flush();
 
