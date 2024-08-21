@@ -1,0 +1,12 @@
+@startuml
+
+actor User
+participant Controller
+participant TaskRepository
+
+User -> Controller : GET /tasks
+Controller -> TaskRepository : Demande la liste des tâches
+TaskRepository -> Controller : Récupére la liste des tâches
+Controller -> User : Retourne la liste des tâches
+
+@enduml

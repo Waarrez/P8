@@ -1,0 +1,41 @@
+@startuml
+
+class User {
+    +int id
+    +string username
+    +string password
+    +string email
+    +List<Task> tasks
+    +String getUserIdentifier()
+    +String getPassword()
+    +void eraseCredentials()
+    +List<String> getRoles()
+    +void setUsername(string username)
+    +void setPassword(string password)
+    +void setEmail(string email)
+    +void setRoles(List<string> roles)
+    +void addTask(Task task)
+    +void removeTask(Task task)
+}
+
+class Task {
+    +int id
+    +DateTimeImmutable createdAt
+    +string title
+    +string content
+    +bool isDone
+    +User user
+    +DateTimeImmutable getCreatedAt()
+    +String getTitle()
+    +String getContent()
+    +bool isDone()
+    +void setCreatedAt(DateTimeImmutable createdAt)
+    +void setTitle(string title)
+    +void setContent(string content)
+    +void setDone(bool isDone)
+    +void setUser(User user)
+}
+
+User "1" -- "0..*" Task : ManyToOne
+
+@enduml

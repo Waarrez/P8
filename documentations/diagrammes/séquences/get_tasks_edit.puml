@@ -1,0 +1,30 @@
+@startuml
+
+actor Utilisateur
+participant Controleur
+participant RepositoryTaches
+participant ServiceAutorisation
+participant MoteurTemplates
+
+Utilisateur -> Controleur : GET /tasks/{id}/edit
+Controleur -> RepositoryTaches : trouver(id)
+RepositoryTaches -> Controleur : Tâche
+
+alt Tâche appartient à l'utilisateur
+    Controleur -> ServiceAutorisation : verifierPropriete(Tâche)
+    ServiceAutorisation -> Controleur : Est Propriétaire (vrai)
+    Controleur -> MoteurTemplates : afficherFormulaireEdition(Tâche)
+    MoteurTemplates -> Controleur : Formulaire d'édition
+    Controleur -> Utilisateur : Affiche le formulaire d'édition
+else Tâche n'appartient pas à l'utilisateur
+    Controleur -> ServiceAutorisation : verifierPropriete(Tâche)
+    ServiceAutorisation -> Controleur : Est Propriétaire (faux)
+    Controleur -> Utilisateur : Redirection vers erreur (non autorisé)
+end
+
+Utilisateur -> Controleur : POST /taches/{id}/editer (données du formulaire)
+Controleur -> RepositoryTaches : mettreAJour(Tâche)
+RepositoryTaches -> Controleur : Confirmation
+Controleur -> Utilisateur : Redirection vers succès
+
+@enduml
