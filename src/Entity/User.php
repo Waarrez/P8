@@ -23,12 +23,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: "AUTO")]
     #[ORM\Column]
-    private ?int $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(length: 25)]
     #[Assert\Length(max : 25, maxMessage: "Le nom d'utilisateur ne doit pas dépasser 25 caractères")]
     #[Assert\NotBlank(message: "Vous devez saisir un nom d'utilisateur.")]
-    private ?string $username = null;
+    public ?string $username = null;
 
     /**
      * @var list<string> The user roles
@@ -40,14 +40,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: 'Vous devez saisir un mot de passe.')]
+    #[Assert\NotNull(message: 'Vous devez saisir un mot de passe.')]
     public ?string $password = null;
 
-    #[ORM\Column(length: 60)]
-    #[Assert\Length(max: 60, maxMessage: "L'email ne doit pas dépasser 25 caractères")]
+    #[ORM\Column(length: 60, unique: true)]
+    #[Assert\Length(max: 60)]
     #[Assert\NotBlank(message: "Vous devez saisir une adresse email.")]
     #[Assert\Email(message: "Le format de l'adresse n'est pas correcte.")]
-    private ?string $email = null;
+    public ?string $email = null;
 
     /**
      * @var Collection<int, Task>
@@ -131,8 +132,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function eraseCredentials(): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
     }
 
     public function getEmail(): ?string

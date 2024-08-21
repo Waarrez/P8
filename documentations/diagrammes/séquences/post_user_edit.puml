@@ -1,0 +1,15 @@
+@startuml
+
+actor Admin
+participant UserController
+participant UserHandler
+participant BDD
+
+Admin -> UserController : POST /users/{id}/edit
+UserController -> UserHandler : Transmet le formulaire
+UserHandler -> BDD : Met à jours l'utilisateur
+BDD -> UserHandler :
+UserHandler -> UserController
+UserController -> Admin : Redirection vers /users
+
+@enduml

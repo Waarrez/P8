@@ -1,0 +1,20 @@
+@startuml
+
+actor User
+participant TaskController
+participant TaskHandler
+participant BDD
+
+User -> TaskController : Transmet les données du formulaire
+
+alt Si non connecté
+    TaskController -> User : Message d'erreur : "Vous devez être connecté pour créer une tâche."
+else Si connecté
+    TaskController -> TaskHandler : Valide les données
+    TaskHandler -> BDD : Enregistre la tâche
+    BDD -> TaskHandler : Confirmation de l'enregistrement
+    TaskHandler -> TaskController : Retourne message de succès
+    TaskController -> User : Message de succès : "Tâche créée avec succès."
+end
+
+@enduml

@@ -51,6 +51,12 @@ class TaskController extends AbstractController
     #[IsGranted("IS_AUTHENTICATED_FULLY")]
     public function editAction(Task $task, Request $request): Response
     {
+        if($this->getUser()->getId() !== $task->getUser()->getId()) {
+            $this->addFlash('error', "Vous n'êtes pas auteur de la tâche, vous ne pouvez pas la modifier");
+            return $this->redirectToRoute("task_list");
+        }
+
+
         $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);

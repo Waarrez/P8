@@ -1,0 +1,20 @@
+@startuml
+
+actor User
+participant TaskController
+participant TaskHandler
+participant BDD
+
+User -> TaskController : Transmet les données du formulaire
+
+alt Si pas auteur de la tâche
+    TaskController -> User : Message d'erreur : "Vous devez être auteur de la tâche pour la modifier"
+else Si connecté
+    TaskController -> TaskHandler : Valide les données
+    TaskHandler -> BDD : Modifie la tâche
+    BDD -> TaskHandler : Confirmation de la modification
+    TaskHandler -> TaskController : Retourne message de succès
+    TaskController -> User : Message de succès : "Tâche modifié avec succès."
+end
+
+@enduml
