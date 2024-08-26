@@ -24,9 +24,12 @@ class TaskController extends AbstractController
     {}
 
     #[Route("/tasks", name : "task_list")]
+    #[IsGranted("IS_AUTHENTICATED_FULLY")]
     public function listAction(): Response
     {
-        return $this->render('task/list.html.twig', ['tasks' => $this->taskRepository->findAll()]);
+
+
+        return $this->render('task/list.html.twig', ['tasks' => $this->taskRepository->getTasksNotFinished()]);
     }
 
     #[Route(path: "/tasks/create", name: "task_create")]
@@ -86,6 +89,16 @@ class TaskController extends AbstractController
         $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
 
         return $this->redirectToRoute('task_list');
+    }
+
+    #[Route(path: "/tasks/finished", name: "task_finished")]
+    public function viewTaskFinished(): Response {
+
+        $tasks = $this->taskRepository->getTasksFinished();
+
+        return $this->render('task/finished.html.twig', [
+            'tasks' => $tasks
+        ]);
     }
 
     #[Route(path: "/tasks/{id}/delete", name: 'task_delete')]

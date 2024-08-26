@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\User\UserHandler;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,7 @@ class UserController extends AbstractController
     public function __construct(
         private readonly UserHandler $userHandler,
         private readonly UserRepository $userRepository,
+        private readonly EntityManagerInterface $manager
     ) {
     }
 
@@ -60,5 +62,18 @@ class UserController extends AbstractController
             'form' => $form->createView(),
             'user' => $user,
         ]);
+    }
+
+    #[Route(path: '/users/{id}/delete', name: 'user_delete')]
+    public function delete(User $user): Response
+    {
+        $user = $this->userRepository->find($user);
+
+        $this->manager->remove($user);
+        $this->manager->flush();
+
+        $this->addFlash('success', 'L\'utilisateur à bien été supprimé');
+
+        return $this->redirectToRoute('user_list');
     }
 }

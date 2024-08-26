@@ -32,6 +32,17 @@
         </whitelist>
     </filter>
 
+    <coverage>
+        <include>
+            <directory>src</directory>
+        </include>
+        <exclude>
+            <directory>src/AppBundle.php</directory>
+            <directory>src/Kernel.php</directory>
+            <directory>src/DataFixtures</directory>
+        </exclude>
+    </coverage>
+
     <listeners>
         <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
     </listeners>

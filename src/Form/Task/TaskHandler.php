@@ -6,7 +6,6 @@ namespace App\Form\Task;
 
 use App\Entity\Task;
 use App\Entity\User;
-use App\Repository\TaskRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\FormFactoryInterface;
