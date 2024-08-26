@@ -23,7 +23,7 @@ class TaskController extends AbstractController
     )
     {}
 
-    #[Route("/tasks", name : "task_list")]
+    #[Route("/tasks", name : "task_list", methods: ['GET'])]
     #[IsGranted("IS_AUTHENTICATED_FULLY")]
     public function listAction(): Response
     {
@@ -32,7 +32,7 @@ class TaskController extends AbstractController
         return $this->render('task/list.html.twig', ['tasks' => $this->taskRepository->getTasksNotFinished()]);
     }
 
-    #[Route(path: "/tasks/create", name: "task_create")]
+    #[Route(path: "/tasks/create", name: "task_create", methods: ['GET', 'POST'])]
     #[IsGranted("IS_AUTHENTICATED_FULLY")]
     public function createAction(Request $request): Response
     {
@@ -50,7 +50,7 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route(path: "/task/{id}/edit", name: 'task_edit')]
+    #[Route(path: "/task/{id}/edit", name: 'task_edit', methods: ['GET', 'POST'])]
     #[IsGranted("IS_AUTHENTICATED_FULLY")]
     public function editAction(Task $task, Request $request): Response
     {
@@ -79,7 +79,7 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route(path: "/tasks/{id}/toggle", name: 'task_toggle')]
+    #[Route(path: "/tasks/{id}/toggle", name: 'task_toggle', methods: ['GET', 'POST'])]
     #[IsGranted("IS_AUTHENTICATED_FULLY")]
     public function toggleTaskAction(Task $task): Response
     {
@@ -101,7 +101,7 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route(path: "/tasks/{id}/delete", name: 'task_delete')]
+    #[Route(path: "/tasks/{id}/delete", name: 'task_delete', methods: ['GET'])]
     #[IsGranted("IS_AUTHENTICATED_FULLY")]
     public function deleteTaskAction(Task $task): RedirectResponse
     {

@@ -22,7 +22,7 @@ class UserController extends AbstractController
     ) {
     }
 
-    #[Route(path: '/users', name: 'user_list')]
+    #[Route(path: '/users', name: 'user_list', methods: ['GET'])]
     public function list(): Response
     {
         return $this->render('user/list.html.twig', [
@@ -30,7 +30,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/users/create', name: 'user_create')]
+    #[Route(path: '/users/create', name: 'user_create', methods: ['GET', 'POST'])]
     public function create(Request $request): Response
     {
         $user = new User();
@@ -47,7 +47,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/users/{id}/edit', name: 'user_edit')]
+    #[Route(path: '/users/{id}/edit', name: 'user_edit', methods: ['GET', 'POST'])]
     public function edit(User $user, Request $request): Response
     {
         $form = $this->userHandler->prepare($user);
@@ -64,7 +64,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/users/{id}/delete', name: 'user_delete')]
+    #[Route(path: '/users/{id}/delete', name: 'user_delete', methods: ['GET'])]
     public function delete(User $user): Response
     {
         $user = $this->userRepository->find($user);
