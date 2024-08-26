@@ -15,10 +15,9 @@
 - Démarrer le serveur avec la commande suivante : ``` symfony serve -d ```
 - Suivez les étapes si dessous
 
-## INSCRIPTION
-- Vous devez vous rendre dans l'onglet INSCRIPTION, remplir les différents champs (veuillez à ce que l'email est valide car un email de confirmation sera envoyé)
-- Ensuite rendez vous dans votre boîte mail et confirmer votre compte
-- Connectez vous et ajouter, modifier et commenter les différentes figures présentes !
+## CONNEXION
+
+- Pour vous connecter en administrateur : ``` username: admin | password : admin ```
 
 [![PHP Version](https://img.shields.io/badge/php-8.0-blue)](https://www.php.net/releases/8.0/en.php)
 ![Composer Version](https://img.shields.io/badge/Composer-2.6.6-blue)

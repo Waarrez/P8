@@ -27,11 +27,11 @@ class UserCreateCommand extends Command {
         $io = new SymfonyStyle($input, $output);
 
         $user = new User();
-        $user->setUsername("Warez")
-             ->setEmail("warez@gmail.com")
+        $user->setUsername("Admin")
+             ->setEmail("admin@gmail.com")
              ->setRoles(["ROLE_ADMIN"]);
 
-        $hashPassword = $this->hasher->hashPassword($user, "warez1234");
+        $hashPassword = $this->hasher->hashPassword($user, "admin");
         $user->setPassword($hashPassword);
 
         $this->manager->persist($user);
