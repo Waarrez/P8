@@ -91,7 +91,7 @@ class TaskController extends AbstractController
         return $this->redirectToRoute('task_list');
     }
 
-    #[Route(path: "/tasks/finished", name: "task_finished")]
+    #[Route(path: "/tasks/finished", name: "task_finished", methods: ['GET'])]
     public function viewTaskFinished(): Response {
 
         $tasks = $this->taskRepository->getTasksFinished();
@@ -101,7 +101,7 @@ class TaskController extends AbstractController
         ]);
     }
 
-    #[Route(path: "/tasks/{id}/delete", name: 'task_delete', methods: ['GET'])]
+    #[Route(path: "/tasks/{id}/delete", name: 'task_delete', methods: ['GET', 'POST'])]
     #[IsGranted("IS_AUTHENTICATED_FULLY")]
     public function deleteTaskAction(Task $task): RedirectResponse
     {
