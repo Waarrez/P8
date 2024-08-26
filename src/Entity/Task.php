@@ -20,14 +20,14 @@ class Task
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: "Vous devez saisir un titre.")]
-    private ?string $title = null;
+    public ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: "Vous devez saisir du contenu.")]
-    private ?string $content = null;
+    public ?string $content = null;
 
     #[ORM\Column]
-    private ?bool $isDone = null;
+    private ?bool $isDone = false;
 
     #[ORM\ManyToOne(inversedBy: 'tasks')]
     #[ORM\JoinColumn(nullable: false)]
@@ -36,7 +36,6 @@ class Task
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
-        $this->isDone = false;
     }
 
     public function getId(): ?int

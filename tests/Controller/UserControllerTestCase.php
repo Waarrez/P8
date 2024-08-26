@@ -27,7 +27,7 @@ class UserControllerTestCase extends AbstractWebTestCase
             ->select('u')
             ->from(User::class, 'u')
             ->where('u.username != :username')
-            ->setParameter('username', 'davy')
+            ->setParameter('username', 'Warez')
             ->setMaxResults(1)
             ->getQuery()
             ->getResult()[0];
