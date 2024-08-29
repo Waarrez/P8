@@ -47,4 +47,6 @@ Pour contribuer au projet merci de lire les information ci-dessous :
 
 [![PHP Version](https://img.shields.io/badge/php-8.0-blue)](https://www.php.net/releases/8.0/en.php)
 ![Composer Version](https://img.shields.io/badge/Composer-2.6.6-blue)
+[![SymfonyInsight](https://insight.symfony.com/projects/0f2de786-c11d-43cb-958e-6fa3ae7299c2/big.svg)](https://insight.symfony.com/projects/0f2de786-c11d-43cb-958e-6fa3ae7299c2)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2c48b986db898253dfbf/maintainability)](https://codeclimate.com/github/Waarrez/P8/maintainability)
 
