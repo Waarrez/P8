@@ -1,12 +1,12 @@
 @startuml
 
-actor User
+actor Admin
 participant UserController
 participant UserHandler
 
-User -> UserController : GET /tasks/create
+Admin -> UserController : GET /tasks/create
 UserController -> UserHandler : Création du formulaire
 UserHandler -> UserController
-UserController -> User : Renvoie le formulaire
+UserController -> Admin : Renvoie le formulaire
 
 @enduml

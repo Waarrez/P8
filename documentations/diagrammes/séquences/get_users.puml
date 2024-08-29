@@ -1,11 +1,11 @@
 @startuml
 
-actor User
+actor Admin
 participant Controller
 participant UserRepository
 
-User -> Controller : GET /users
+Admin -> Controller : GET /users
 Controller -> UserRepository : Demande la liste des utilisateurs
 UserRepository -> Controller : Récupére la liste des utilisateurs
-Controller -> User : Retourne la liste des users
+Controller -> Admin : Retourne la liste des users
 @enduml

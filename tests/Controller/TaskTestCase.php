@@ -24,7 +24,7 @@ class TaskTestCase extends AbstractWebTestCase
         $this->taskRepository = $taskRepository;
         $this->adminTask = $this->taskRepository->findOneBy([
             'user' => $this->userRepository->findOneBy([
-                'username' => 'Warez',
+                'username' => 'Admin',
             ]),
         ]);
         $this->userTask = $this->taskRepository->findOneBy([

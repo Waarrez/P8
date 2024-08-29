@@ -19,6 +19,32 @@
 
 - Pour vous connecter en administrateur : ``` username: admin | password : admin ```
 
+
+## CONTRIBUTION AU PROJET
+
+Pour contribuer au projet merci de lire les information ci-dessous :
+
+1. Forker et cloner le dépôt
+   Utilisez le bouton "Fork" pour copier ce dépôt sur votre compte GitHub.
+   Clonez votre fork localement avec la commande :
+   bash
+   Copier le code
+   git clone https://github.com/votre-utilisateur/projet.git
+2. Créer une branche pour vos modifications
+   Créez une nouvelle branche pour vos changements :
+   bash
+   Copier le code
+   git checkout -b nom-de-branche
+3. Apporter des modifications
+   Apportez les modifications souhaitées tout en respectant le style de code et les bonnes pratiques du projet.
+4. Tester vos modifications
+   Assurez-vous que tout fonctionne correctement en exécutant les tests du projet.
+5. Soumettre une Pull Request
+   Poussez votre branche sur votre fork et ouvrez une Pull Request vers le dépôt principal. Expliquez clairement les modifications apportées.
+   Merci d'avance pour vos contributions !
+
+
+
 [![PHP Version](https://img.shields.io/badge/php-8.0-blue)](https://www.php.net/releases/8.0/en.php)
 ![Composer Version](https://img.shields.io/badge/Composer-2.6.6-blue)
 

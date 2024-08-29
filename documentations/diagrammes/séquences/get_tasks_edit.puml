@@ -22,9 +22,4 @@ else Tâche n'appartient pas à l'utilisateur
     Controleur -> Utilisateur : Redirection vers erreur (non autorisé)
 end
 
-Utilisateur -> Controleur : POST /taches/{id}/editer (données du formulaire)
-Controleur -> RepositoryTaches : mettreAJour(Tâche)
-RepositoryTaches -> Controleur : Confirmation
-Controleur -> Utilisateur : Redirection vers succès
-
 @enduml
